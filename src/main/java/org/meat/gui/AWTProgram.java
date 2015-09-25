@@ -2,12 +2,14 @@ package org.meat.gui;
 
 import java.awt.Frame;
 
+import javax.swing.JFrame;
+
 import org.meat.gui.state.FrameState;
 import org.meat.gui.state.InitFrame;
 
 public class AWTProgram {
 
-	private Frame frame;
+	private JFrame frame;
 	private FrameState frameState;
 	private FrameSetContext frameContext;
 

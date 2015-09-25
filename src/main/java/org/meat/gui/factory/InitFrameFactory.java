@@ -1,22 +1,33 @@
 package org.meat.gui.factory;
 
-import java.awt.Button;
 import java.awt.FlowLayout;
-import java.awt.Frame;
 import java.awt.GridLayout;
-import java.awt.Label;
 import java.awt.Panel;
 
-import org.meat.gui.actions.ButtonNextFrame;
-import org.meat.gui.actions.ButtonOKAction;
-import org.meat.gui.actions.ButtonSubmitAction;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+
 import org.meat.gui.actions.WindowClose;
 
 public class InitFrameFactory extends AbstractFrameFactory {
 
+	private JFrame frame;
+	
+	public InitFrameFactory() {
+		
+	}
+	public InitFrameFactory(JFrame frame) {
+		this.frame = frame;
+	}
+	
 	@Override
-	public Frame createFrame() {
-		Frame frame = new Frame("Java AWT");
+	public JFrame createFrame() {
+		if(frame != null){
+			frame.removeAll();
+		}
+		else {
+			frame = new JFrame("Java AWT");
+		}
 		frame.setSize(400, 400);
 		frame.setLayout(new GridLayout(3, 1));
 		frame.addWindowListener(new WindowClose());
@@ -24,8 +35,8 @@ public class InitFrameFactory extends AbstractFrameFactory {
 	}
 
 	@Override
-	public Panel createPanel() {
-		Panel panel = new Panel();
+	public JPanel createPanel() {
+		JPanel panel = new JPanel();
 		panel.setLayout(new FlowLayout());
 		return panel;
 	}

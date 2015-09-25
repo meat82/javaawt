@@ -1,6 +1,6 @@
 package org.meat.gui;
 
-import java.awt.Frame;
+import javax.swing.JFrame;
 
 import org.meat.gui.state.FrameState;
 
@@ -16,7 +16,7 @@ public class FrameSetContext implements FrameState{
 		this.frameState = frameState;
 	}
 	
-	public Frame changeFrame() {
+	public JFrame changeFrame() {
 		return this.frameState.changeFrame();		
 	}
 

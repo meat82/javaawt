@@ -8,16 +8,16 @@ import javax.swing.JFrame;
 import org.meat.gui.AWTProgram;
 import org.meat.gui.FrameSetContext;
 import org.meat.gui.state.FrameState;
-import org.meat.gui.state.SecondFrame;
+import org.meat.gui.state.InitFrame;
 
-public class ButtonNextFrame implements ActionListener {
+public class ButtonBackAction implements ActionListener {
 
 	private AWTProgram program;
 	private FrameState frameState;
 	private FrameSetContext frameContext;
 	
-	public ButtonNextFrame(JFrame frame, AWTProgram program) {
-		frameState = new SecondFrame(frame,program);
+	public ButtonBackAction(JFrame frame, AWTProgram program) {
+		frameState = new InitFrame(program,frame);
 		frameContext = new FrameSetContext();
 		this.program = program;
 	}

@@ -1,31 +1,40 @@
 package org.meat.gui.factory;
 
 import java.awt.Button;
-import java.awt.Frame;
 import java.awt.Label;
 import java.awt.Panel;
+import java.awt.TextField;
 
-import org.meat.gui.actions.ButtonOKAction;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
 
 public abstract class AbstractFrameFactory {
 
 	public AbstractFrameFactory() {
 		
 	}
-	public abstract Frame createFrame();
+	public abstract JFrame createFrame();
 	
-	public Button createButton(String label) {
-		Button button = new Button(label);
+	public JButton createButton(String label) {
+		JButton button = new JButton(label);
 		button.setActionCommand(label);
 		button.setLabel(label);
 		return button;
 	}
 	
-	public abstract Panel createPanel();
+	public abstract JPanel createPanel();
 	
-	public Label createLabel(String text) {
-		Label label = new Label(text);
+	public JLabel createLabel(String text) {
+		JLabel label = new JLabel(text);
 		return label;
+	}
+	public JTextField createTextField(String name) {
+		JTextField textField = new JTextField();
+		textField.setName(name);
+		return textField;
 	}
 
 }

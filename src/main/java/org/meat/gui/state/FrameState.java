@@ -1,8 +1,8 @@
 package org.meat.gui.state;
 
-import java.awt.Frame;
+import javax.swing.JFrame;
 
 public interface FrameState {
 	
-	public Frame changeFrame();
+	public JFrame changeFrame();
 }

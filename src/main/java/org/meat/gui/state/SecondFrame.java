@@ -3,6 +3,7 @@ package org.meat.gui.state;
 import java.awt.Button;
 import java.awt.Label;
 import java.awt.Panel;
+import java.awt.Point;
 import java.awt.TextField;
 
 import javax.swing.JButton;
@@ -38,13 +39,16 @@ public class SecondFrame implements FrameState {
 	}
 
 	public JFrame changeFrame() {
+		
+		frame.setVisible(false);
+		Point point = frame.getLocation();
+		
 		frame = frameFactory.createFrame();
-
+		frame.setLocation(point);
+		
 		headerLabel = frameFactory.createLabel(HEADER_LABEL);
-		//headerLabel.setAlignment(Label.CENTER);
 
 		statusLabel = frameFactory.createLabel(STATUS_LABEL);
-		//statusLabel.setAlignment(Label.CENTER);
 		statusLabel.setSize(350, 100);
 
 		controlPanel = frameFactory.createPanel();

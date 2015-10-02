@@ -32,7 +32,6 @@ public class SecondFrameFactory extends AbstractFrameFactory {
 	@Override
 	public JPanel createPanel() {
 		JPanel panel = new JPanel();
-		panel.setLayout(new FlowLayout());
 		panel.setBackground(GUIUtils.getGUIColor());
 		return panel;
 	}

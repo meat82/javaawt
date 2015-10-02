@@ -1,10 +1,10 @@
 package org.meat.gui.factory;
 
-import java.awt.Button;
-import java.awt.Label;
-import java.awt.Panel;
-import java.awt.TextField;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
 
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -13,15 +13,22 @@ import javax.swing.JTextField;
 
 public abstract class AbstractFrameFactory {
 
+	private BufferedImage headerPicture;
+	private BufferedImage footerPicture;
+	
 	public AbstractFrameFactory() {
-		
+		try {
+			headerPicture = ImageIO.read(this.getClass().getResource("header_logo.jpg"));
+			footerPicture = ImageIO.read(this.getClass().getResource("footer_logo.jpg"));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}		
 	}
 	public abstract JFrame createFrame();
 	
 	public JButton createButton(String label) {
 		JButton button = new JButton(label);
 		button.setActionCommand(label);
-		button.setLabel(label);
 		return button;
 	}
 	
@@ -36,5 +43,12 @@ public abstract class AbstractFrameFactory {
 		textField.setName(name);
 		return textField;
 	}
-
+	public JLabel createHeaderLabel() {
+		JLabel label = new JLabel(new ImageIcon(headerPicture));
+		return label;
+	}
+	public JLabel createFooterLabel() {
+		JLabel label = new JLabel(new ImageIcon(footerPicture));
+		return label;
+	}
 }

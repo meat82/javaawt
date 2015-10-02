@@ -1,10 +1,7 @@
 package org.meat.gui.state;
 
-import java.awt.Button;
-import java.awt.Label;
-import java.awt.Panel;
+import java.awt.Dimension;
 import java.awt.Point;
-import java.awt.TextField;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -24,7 +21,7 @@ public class SecondFrame implements FrameState {
 	private static final String BACK_BUTTON_LABEL = "Back";
 	private JFrame frame;
 	private JLabel headerLabel;
-	private JLabel statusLabel;
+	private JLabel footerLabel;
 	private JPanel controlPanel;
 	private JButton backButton;
 	private AbstractFrameFactory frameFactory;
@@ -41,15 +38,16 @@ public class SecondFrame implements FrameState {
 	public JFrame changeFrame() {
 		
 		frame.setVisible(false);
+		Dimension dimension = frame.getSize();
 		Point point = frame.getLocation();
+		frame.dispose();
 		
 		frame = frameFactory.createFrame();
 		frame.setLocation(point);
+		frame.setSize(dimension);
 		
-		headerLabel = frameFactory.createLabel(HEADER_LABEL);
-
-		statusLabel = frameFactory.createLabel(STATUS_LABEL);
-		statusLabel.setSize(350, 100);
+		headerLabel = frameFactory.createHeaderLabel();
+		footerLabel = frameFactory.createFooterLabel();
 
 		controlPanel = frameFactory.createPanel();
 		
@@ -65,7 +63,7 @@ public class SecondFrame implements FrameState {
 
 		frame.add(headerLabel);
 		frame.add(controlPanel);
-		frame.add(statusLabel);
+		frame.add(footerLabel);
 
 		return frame;
 	}

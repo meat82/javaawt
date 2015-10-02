@@ -9,6 +9,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 import org.meat.gui.actions.WindowClose;
+import org.meat.gui.utils.GUIUtils;
 
 public class SecondFrameFactory extends AbstractFrameFactory {
 
@@ -20,10 +21,10 @@ public class SecondFrameFactory extends AbstractFrameFactory {
 
 	@Override
 	public JFrame createFrame() {
-		//frame.removeAll();
 		JFrame frame = new JFrame();
 		frame.setSize(400, 400);
 		frame.setLayout(new GridLayout(3, 1));
+		frame.getContentPane().setBackground(GUIUtils.getGUIColor());
 		frame.addWindowListener(new WindowClose());
 		return frame;
 	}
@@ -32,6 +33,7 @@ public class SecondFrameFactory extends AbstractFrameFactory {
 	public JPanel createPanel() {
 		JPanel panel = new JPanel();
 		panel.setLayout(new FlowLayout());
+		panel.setBackground(GUIUtils.getGUIColor());
 		return panel;
 	}
 	public GroupLayout createLayOut() {

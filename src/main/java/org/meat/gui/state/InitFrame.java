@@ -1,9 +1,5 @@
 package org.meat.gui.state;
 
-import java.awt.Button;
-import java.awt.Label;
-import java.awt.Panel;
-
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -13,7 +9,6 @@ import org.meat.gui.AWTProgram;
 import org.meat.gui.actions.ButtonNextFrame;
 import org.meat.gui.actions.ButtonOKAction;
 import org.meat.gui.actions.ButtonSubmitAction;
-import org.meat.gui.factory.AbstractFrameFactory;
 import org.meat.gui.factory.InitFrameFactory;
 
 public class InitFrame implements FrameState {
@@ -25,13 +20,13 @@ public class InitFrame implements FrameState {
 	private static final String NEXT = "Next";
 	private JFrame frame;
 	private JLabel headerLabel;
-	private JLabel statusLabel;
+	private JLabel footer;
 	private JPanel controlPanel;
 	private JButton okButton;
 	private JButton submitButton;
 	private JButton nextButton;
 	private AWTProgram program;
-	private AbstractFrameFactory frameFactory;
+	private InitFrameFactory frameFactory;
 
 	public InitFrame(AWTProgram program) {
 		this.program = program;
@@ -45,12 +40,8 @@ public class InitFrame implements FrameState {
 	public JFrame changeFrame() {
 		frame = frameFactory.createFrame();
 		
-		headerLabel = frameFactory.createLabel(HEADER_LABEL);
-		//headerLabel.setAlignment(Label.CENTER);
-
-		statusLabel = frameFactory.createLabel(STATUS_LABEL);
-		//statusLabel.setAlignment(Label.CENTER);
-		statusLabel.setSize(350, 100);
+		headerLabel = frameFactory.createHeaderLabel();
+		footer = frameFactory.createFooterLabel();
 
 		controlPanel = frameFactory.createPanel();
 
@@ -68,7 +59,7 @@ public class InitFrame implements FrameState {
 
 		frame.add(headerLabel);
 		frame.add(controlPanel);
-		frame.add(statusLabel);
+		frame.add(footer);
 		return frame;
 	}
 

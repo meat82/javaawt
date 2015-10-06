@@ -29,6 +29,7 @@ public abstract class AbstractFrameFactory {
 	public JButton createButton(String label) {
 		JButton button = new JButton(label);
 		button.setActionCommand(label);
+		button.setName(label);
 		return button;
 	}
 	

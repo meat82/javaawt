@@ -1,8 +1,6 @@
 package org.meat.gui.factory;
 
-import java.awt.FlowLayout;
 import java.awt.GridLayout;
-import java.awt.Panel;
 
 import javax.swing.GroupLayout;
 import javax.swing.JFrame;
@@ -35,6 +33,7 @@ public class SecondFrameFactory extends AbstractFrameFactory {
 		panel.setBackground(GUIUtils.getGUIColor());
 		return panel;
 	}
+
 	public GroupLayout createLayOut() {
 		GroupLayout layout = new GroupLayout(frame.getContentPane());
 		return layout;

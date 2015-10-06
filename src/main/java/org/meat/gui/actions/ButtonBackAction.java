@@ -22,6 +22,12 @@ public class ButtonBackAction implements ActionListener {
 		this.program = program;
 	}
 
+	public ButtonBackAction(JFrame previousFrame, JFrame currentFrame, AWTProgram program) {
+		frameState = new InitFrame(program,previousFrame, currentFrame);
+		frameContext = new FrameSetContext();
+		this.program = program;
+	}
+
 	public void actionPerformed(ActionEvent e) {
 		frameContext.setFrame(frameState);
 		program.setFrame(frameContext);

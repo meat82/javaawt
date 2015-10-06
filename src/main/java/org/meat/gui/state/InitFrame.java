@@ -1,5 +1,8 @@
 package org.meat.gui.state;
 
+import java.awt.Dimension;
+import java.awt.Point;
+
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -13,12 +16,11 @@ import org.meat.gui.factory.InitFrameFactory;
 
 public class InitFrame implements FrameState {
 
-	private static final String HEADER_LABEL = "AWESOME PROGRAM";
-	private static final String STATUS_LABEL = "STATUS";
 	private static final String OK = "OK";
 	private static final String SUBMIT = "Submit";
 	private static final String NEXT = "Next";
 	private JFrame frame;
+	private JFrame currentFrame;
 	private JLabel headerLabel;
 	private JLabel footer;
 	private JPanel controlPanel;
@@ -32,34 +34,52 @@ public class InitFrame implements FrameState {
 		this.program = program;
 		frameFactory = new InitFrameFactory();
 	}
+
 	public InitFrame(AWTProgram program, JFrame frame) {
 		this.program = program;
 		frameFactory = new InitFrameFactory(frame);
 		this.frame = frame;
 	}
+
+	public InitFrame(AWTProgram program, JFrame previousFrame, JFrame currentFrame) {
+		this.program = program;
+		this.frame = previousFrame;
+		this.currentFrame = currentFrame;
+
+	}
+
 	public JFrame changeFrame() {
-		frame = frameFactory.createFrame();
-		
-		headerLabel = frameFactory.createHeaderLabel();
-		footer = frameFactory.createFooterLabel();
+		if (frame != null) {
+			currentFrame.setVisible(false);
+			Point point = currentFrame.getLocation();
+			Dimension dimension = currentFrame.getSize();
+			frame.setLocation(point);
+			frame.setSize(dimension);
+			frame.setVisible(true);
 
-		controlPanel = frameFactory.createPanel();
+		} else {
+			frame = frameFactory.createFrame();
 
-		okButton = frameFactory.createButton(OK);
-		submitButton = frameFactory.createButton(SUBMIT);
-		nextButton = frameFactory.createButton(NEXT);
+			headerLabel = frameFactory.createHeaderLabel();
+			footer = frameFactory.createFooterLabel();
 
-		okButton.addActionListener(new ButtonOKAction());
-		submitButton.addActionListener(new ButtonSubmitAction());
-		nextButton.addActionListener(new ButtonNextFrame(frame,program));
+			controlPanel = frameFactory.createPanel();
 
-		controlPanel.add(okButton);
-		controlPanel.add(submitButton);
-		controlPanel.add(nextButton);
+			okButton = frameFactory.createButton(OK);
+			submitButton = frameFactory.createButton(SUBMIT);
+			nextButton = frameFactory.createButton(NEXT);
+			okButton.addActionListener(new ButtonOKAction());
+			submitButton.addActionListener(new ButtonSubmitAction(this));
+			nextButton.addActionListener(new ButtonNextFrame(frame, program));
 
-		frame.add(headerLabel);
-		frame.add(controlPanel);
-		frame.add(footer);
+			controlPanel.add(okButton);
+			controlPanel.add(submitButton);
+			controlPanel.add(nextButton);
+
+			frame.add(headerLabel);
+			frame.add(controlPanel);
+			frame.add(footer);
+		}
 		return frame;
 	}
 

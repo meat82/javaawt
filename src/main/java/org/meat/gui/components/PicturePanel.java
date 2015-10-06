@@ -20,13 +20,11 @@ public class PicturePanel extends JPanel {
 		try {
 			image = ImageIO.read(PicturePanel.class.getResourceAsStream("ideal.jpg"));
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
 	@Override
 	protected void paintComponent(Graphics g) {
-		// TODO Auto-generated method stub
 		super.paintComponent(g);
 		g.drawImage(image, 0, 0, null);
 	}

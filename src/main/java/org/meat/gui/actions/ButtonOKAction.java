@@ -6,7 +6,6 @@ import java.awt.event.ActionListener;
 public class ButtonOKAction implements ActionListener {
 
 	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
 
 	}
 

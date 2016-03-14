@@ -3,9 +3,9 @@ apply plugin: 'eclipse'
 
 sourceCompatibility = 1.8
 version = '1.0'
-
+#TEST
 ext {
-	entryClass = "org.meat.gui.StartGUI"	
+	entryClass = "org.meat.gui.StartGUI"
     emailNotification = "build@master.org"
 }
 
